@@ -13,7 +13,7 @@ public class CartDAO extends AbstractDAO<Cart> {
 
     @Override
     public void create(Cart cart) {
-        String query = "INSERT INTO cart (id, creation_date) VALUES (?. ?);";
+        String query = "INSERT INTO cart (id, creation_date) VALUES (?, ?);";
         try (PreparedStatement statement = getConnection().prepareStatement(query)) {
             statement.setInt(1, cart.getId());
             statement.setDate(2, Date.valueOf(cart.getCreationDate()));
@@ -37,7 +37,8 @@ public class CartDAO extends AbstractDAO<Cart> {
 
     public Cart mapResultSetToObject(ResultSet resultSet) throws SQLException {
         LocalDate creationDate = resultSet.getDate("creation_date").toLocalDate();
-        return new Cart(creationDate, new HashMap<>());
+        int cartId = resultSet.getInt("id");
+        return new Cart(cartId, creationDate, new HashMap<>());
     }
 
 }

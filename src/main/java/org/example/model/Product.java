@@ -7,17 +7,12 @@ public class Product {
     private String description;
     private double price;
     private int stockQuantity;
-    private List<Review> reviews;
 
-    private List<Category> categories;
-
-    public Product(String name, String description, double price, int stockQuantity, List<Review> reviews, List<Category> categories) {
+    public Product(String name, String description, double price, int stockQuantity) {
         this.name = name;
         this.description = description;
         this.price = price;
         this.stockQuantity = stockQuantity;
-        this.reviews = reviews;
-        this.categories = categories;
     }
 
     public String getName() {
@@ -52,19 +47,4 @@ public class Product {
         this.stockQuantity = stockQuantity;
     }
 
-    public List<Review> getReviews() {
-        return reviews;
-    }
-
-    public void setReviews(List<Review> reviews) {
-        this.reviews = reviews;
-    }
-
-    public List<Category> getCategories() {
-        return categories;
-    }
-
-    public void setCategories(List<Category> categories) {
-        this.categories = categories;
-    }
 }

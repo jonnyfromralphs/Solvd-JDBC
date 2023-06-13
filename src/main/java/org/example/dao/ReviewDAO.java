@@ -7,6 +7,8 @@ import org.example.model.User;
 
 import java.sql.*;
 import java.time.LocalDate;
+import java.util.ArrayList;
+import java.util.List;
 
 public class ReviewDAO extends AbstractDAO<Review>{
     public ReviewDAO(Connection connection) {
@@ -17,13 +19,7 @@ public class ReviewDAO extends AbstractDAO<Review>{
     public Review mapResultSetToObject(ResultSet resultSet) throws SQLException {
         double rating = resultSet.getDouble("rating");
         String comment = resultSet.getString("comment");
-        int productId = resultSet.getInt("product_id");
-        int userId = resultSet.getInt("user_id");
-        int cartId = resultSet.getInt("cart_id");
-        Product product = new ProductDAO(getConnection()).getById(productId);
-        User user = new UserDAO(getConnection()).getById(userId);
-        Cart cart = new CartDAO(getConnection()).getById(cartId);
-        return new Review(rating, comment, product, user, cart);
+        return new Review(rating, comment);
     }
 
     @Override
@@ -32,9 +28,20 @@ public class ReviewDAO extends AbstractDAO<Review>{
         try (PreparedStatement statement = getConnection().prepareStatement(query)) {
             statement.setDouble(1, review.getRating());
             statement.setString(2, review.getComment());
-            statement.setInt(3, new ProductDAO(getConnection()).getProductId(review.getProduct()));
-            statement.setInt(4, new UserDAO(getConnection()).getUserId(review.getUser()));
-            statement.setInt(5, new CartDAO(getConnection()).getAll().size() + 1);
+            statement.executeUpdate();
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+    }
+
+    public void create(Review review, User user, Product product) {
+        String query = "INSERT INTO review (rating, comment, product_id, user_id, user_cart_id) VALUES (?, ?, ?, ?, ?)";
+        try (PreparedStatement statement = getConnection().prepareStatement(query)) {
+            statement.setDouble(1, review.getRating());
+            statement.setString(2, review.getComment());
+            statement.setInt(3, new ProductDAO(getConnection()).getProductId(product));
+            statement.setInt(4, new UserDAO(getConnection()).getUserId(user));
+            statement.setInt(5, new UserDAO(getConnection()).getUserCartId(user));
             statement.executeUpdate();
         } catch (SQLException e) {
             e.printStackTrace();
@@ -43,6 +50,30 @@ public class ReviewDAO extends AbstractDAO<Review>{
 
     @Override
     public void update(Review review, int id) {
+        String query = "UPDATE review SET rating = ?, comment = ? WHERE id = ?";
+        try (PreparedStatement statement = getConnection().prepareStatement(query)) {
+            statement.setDouble(1, review.getRating());
+            statement.setString(2, review.getComment());
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+    }
 
+    public List<Review> getReviewsByProduct(Product product) {
+        String query = "SELECT rating, comment FROM review WHERE product_id = ?";
+        try (PreparedStatement statement = getConnection().prepareStatement(query)) {
+            int productId = new ProductDAO(getConnection()).getProductId(product);
+            statement.setInt(1, productId);
+            ResultSet resultSet = statement.executeQuery();
+            List<Review> reviews = new ArrayList<>();
+            while (resultSet.next()) {
+                Review review = mapResultSetToObject(resultSet);
+                reviews.add(review);
+            }
+            return reviews;
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+        return null;
     }
 }

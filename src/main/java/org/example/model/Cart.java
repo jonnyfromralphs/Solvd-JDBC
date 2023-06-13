@@ -9,7 +9,8 @@ public class Cart {
     private LocalDate creationDate;
     private HashMap<Product, Integer> cartItems;
 
-    public Cart(LocalDate creationDate, HashMap<Product, Integer> cartItems) {
+    public Cart(int id, LocalDate creationDate, HashMap<Product, Integer> cartItems) {
+        this.id = id;
         this.creationDate = creationDate;
         this.cartItems = cartItems;
     }

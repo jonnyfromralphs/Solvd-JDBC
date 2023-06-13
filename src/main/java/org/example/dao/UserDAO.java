@@ -18,8 +18,41 @@ public class UserDAO extends AbstractDAO<User>{
         String query = "SELECT id FROM user WHERE username = ?";
         try (PreparedStatement statement = getConnection().prepareStatement(query)) {
             statement.setString(1, user.getUsername());
-            int id = statement.executeQuery().findColumn("id");
-            return id;
+            ResultSet resultSet = statement.executeQuery();
+            if (resultSet.next()) {
+                int id = resultSet.getInt("id");
+                return id;
+            }
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+        return 0;
+    }
+
+    public int getUserIdByUsername(String username) {
+        String query = "SELECT id FROM user WHERE username = ?";
+        try (PreparedStatement statement = getConnection().prepareStatement(query)) {
+            statement.setString(1, username);
+            ResultSet resultSet = statement.executeQuery();
+            if (resultSet.next()) {
+                int id = resultSet.getInt("id");
+                return id;
+            }
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+        return 0;
+    }
+
+    public int getUserCartId(User user) {
+        String query = "SELECT cart_id FROM user WHERE username = ?";
+        try (PreparedStatement statement = getConnection().prepareStatement(query)) {
+            statement.setString(1, user.getUsername());
+            ResultSet resultSet = statement.executeQuery();
+            if (resultSet.next()) {
+                int id = resultSet.getInt("cart_id");
+                return id;
+            }
         } catch (SQLException e) {
             e.printStackTrace();
         }
@@ -45,7 +78,10 @@ public class UserDAO extends AbstractDAO<User>{
             statement.setString(2, user.getEmail());
             statement.setString(3, user.getPassword());
             statement.setDate(4, Date.valueOf(LocalDate.now()));
-            statement.setInt(5, new CartDAO(getConnection()).getAll().size() + 1);
+            int newCartId = new CartDAO(getConnection()).getAll().size() + 1;
+            Cart newCart = new Cart(newCartId, LocalDate.now(), null);
+            new CartDAO(getConnection()).create(newCart);
+            statement.setInt(5, newCartId);
             statement.executeUpdate();
         } catch (SQLException e) {
             e.printStackTrace();
@@ -54,14 +90,13 @@ public class UserDAO extends AbstractDAO<User>{
 
     @Override
     public void update(User user, int id) {
-        String query = "UPDATE user SET username = ?, email = ?, password = ?, registration_date = ?, cart_id = ? WHERE id = ?";
+        String query = "UPDATE user SET username = ?, email = ?, password = ?, registration_date = ? WHERE id = ?";
         try (PreparedStatement statement = getConnection().prepareStatement(query)) {
             statement.setString(1, user.getUsername());
             statement.setString(2, user.getEmail());
             statement.setString(3, user.getPassword());
             statement.setDate(4, Date.valueOf(LocalDate.now()));
-            statement.setInt(5, new CartDAO(getConnection()).getAll().size() + 1);
-            statement.setInt(6, id);
+            statement.setInt(5, id);
             statement.executeUpdate();
         } catch (SQLException e) {
             e.printStackTrace();

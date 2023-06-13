@@ -6,13 +6,12 @@ public class Order {
     private LocalDate orderDate;
     private double totalAmount;
     private Cart cart;
-    private User user;
+
 
     public Order(LocalDate orderDate, double totalAmount, Cart cart, User user) {
         this.orderDate = orderDate;
         this.totalAmount = totalAmount;
         this.cart = cart;
-        this.user = user;
     }
 
     public LocalDate getOrderDate() {

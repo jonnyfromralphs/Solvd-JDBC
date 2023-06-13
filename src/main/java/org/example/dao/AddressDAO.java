@@ -1,6 +1,7 @@
 package org.example.dao;
 
 import org.example.model.Address;
+import org.example.model.User;
 
 import java.sql.*;
 import java.util.ArrayList;
@@ -24,15 +25,15 @@ public class AddressDAO extends AbstractDAO<Address> {
     public List<Address> getAddressesByUser(String username) {
         String query = "SELECT address_line1, address_line2, city, state, zip_code FROM address AS a JOIN user_address AS ua ON a.id = ua.address_id" +
                 " JOIN user AS u on ua.user_id = u.id" +
-                "WHERE u.id = ?;";
+                " WHERE u.id = ?;";
         try (PreparedStatement statement = getConnection().prepareStatement(query)) {
-            statement.setObject(1, username);
+            statement.setInt(1, new UserDAO(getConnection()).getUserIdByUsername(username));
             ResultSet resultSet = statement.executeQuery();
-            List<Address> objects = new ArrayList<>();
+            List<Address> addresses = new ArrayList<>();
             while (resultSet.next()) {
-                objects.add(mapResultSetToObject(resultSet));
+                addresses.add(mapResultSetToObject(resultSet));
             }
-            return objects;
+            return addresses;
         } catch (Exception e) {
             e.printStackTrace();
         }
@@ -54,12 +55,27 @@ public class AddressDAO extends AbstractDAO<Address> {
         }
     }
 
+    public void createAddressWithUser(Address address, User user) {
+        create(address);
+        String query = "INSERT INTO user_address (user_id, address_id) VALUES (?, ?)";
+        try (PreparedStatement statement = getConnection().prepareStatement(query)) {
+            statement.setInt(1, new UserDAO(getConnection()).getUserId(user));
+            statement.setInt(2, getAddressId(address));
+            statement.executeUpdate();
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+    }
+
     public int getAddressId(Address address) {
         String query = "SELECT id FROM address WHERE address_line1 = ?";
         try (PreparedStatement statement = getConnection().prepareStatement(query)) {
             statement.setString(1, address.getAddressLineOne());
-            int id = statement.executeQuery().findColumn("id");
-            return id;
+            ResultSet resultSet = statement.executeQuery();
+            if (resultSet.next()) {
+                int id = resultSet.getInt("id");
+                return id;
+            }
         } catch (SQLException e) {
             e.printStackTrace();
         }
