@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<categories xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+            xsi:noNamespaceSchemaLocation="Category.xsd">
+    <category>
+        <name>Arts and Crafts</name>
+        <description>Items relating to the making of arts and/or crafts</description>
+    </category>
+    <category>
+        <name>Smart Phones</name>
+        <description>Modern smartphones capable of performing a variety of tasks</description>
+    </category>
+</categories>

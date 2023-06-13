@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<addresses xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+           xsi:noNamespaceSchemaLocation="Address.xsd">
+    <address>
+        <address_line1>123 W St</address_line1>
+        <address_line2>Apt 201</address_line2>
+        <city>Los Angeles</city>
+        <state>California</state>
+        <zip_code>90123</zip_code>
+    </address>
+    <address>
+        <address_line1>1184 W Adams</address_line1>
+        <address_line2></address_line2>
+        <city>Las Vegas</city>
+        <state>Nevada</state>
+        <zip_code>10238</zip_code>
+    </address>
+</addresses>

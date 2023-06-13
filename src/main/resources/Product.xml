@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<products xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:noNamespaceSchemaLocation="Product.xsd">
+    <product>
+        <name>LG 43" Flat Screen TV</name>
+        <description>LG's newest TV</description>
+        <price>1199.99</price>
+        <stock_quantity>10</stock_quantity>
+    </product>
+    <product>
+        <name>Apple iPhone 15</name>
+        <description>Apple's latest phone</description>
+        <price>1599.99</price>
+        <stock_quantity>100</stock_quantity>
+    </product>
+</products>
