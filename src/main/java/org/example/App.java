@@ -38,31 +38,32 @@ public class App
             userService.getAllUsers();
 
             User jonathan = new User("jt", "jt@gmail.com", "password", LocalDate.now(), null, null);
-//            userService.createUser(jonathan);
-//            int id = userService.getUserId(jonathan);
-//            userService.deleteUser(id);
-//
+            userService.createUser(jonathan);
+            int id = userService.getUserId(jonathan);
+            userService.deleteUser(id);
+
             ProductService productService = new ProductService(new ProductDAO(connection));
             Product iphone = new Product("Apple iPhone 15", "Apples latest iPhone", 1599.99, 100);
-//            productService.createProduct(iphone);
+            productService.createProduct(iphone);
 
             ReviewService reviewService = new ReviewService(new ReviewDAO(connection));
             Review reviewForIPhone = new Review(4.6, "good phone");
-//            reviewService.createReview(reviewForIPhone, jonathan, iphone);
+            reviewService.createReview(reviewForIPhone, jonathan, iphone);
             List<Review> iPhoneReviews = reviewService.getAllProductReviews(iphone);
             iPhoneReviews.forEach(review -> System.out.println(review.getRating() + ": " + review.getComment()));
 
             AddressService addressService = new AddressService(new AddressDAO(connection));
             Address jonathansAddress = new Address("123 W St", "Apt 203", "Los Angeles", "California", "91203");
             Address jonathansAddress2 = new Address("122453 W St", "Apt 203", "Los Angeles", "California", "91203");
-//            addressService.createAddressWithUser(jonathansAddress, jonathan);
-//            addressService.createAddressWithUser(jonathansAddress2, jonathan);
+            addressService.createAddressWithUser(jonathansAddress, jonathan);
+            addressService.createAddressWithUser(jonathansAddress2, jonathan);
             List<Address> jonathansAddresses = addressService.getAllAddressesByUser("jt");
             jonathansAddresses.forEach(address -> System.out.println(address.getAddressLineOne()));
 
             CategoryService categoryService = new CategoryService(new CategoryDAO(connection));
             Category category = new Category("Communication", "Technology used to communicate through said device");
             categoryService.createCategory(category);
+            connection.close();
         } catch (Exception e) {
             e.printStackTrace();
         }
