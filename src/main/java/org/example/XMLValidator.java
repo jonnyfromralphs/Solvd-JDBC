@@ -96,7 +96,6 @@ public class XMLValidator {
         System.out.println("Parsing review xml");
         System.out.println();
         for (int i = 0; i < reviewNodeList.getLength(); i++) {
-
             Node reviewNode = reviewNodeList.item(i);
             Element reviewElement = (Element) reviewNode;
 
