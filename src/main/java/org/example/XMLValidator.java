@@ -152,7 +152,6 @@ public class XMLValidator {
         System.out.println("Parsing address xml");
         System.out.println();
         for (int i = 0; i < addressNodeList.getLength(); i++) {
-
             Node addressNode = addressNodeList.item(i);
             Element addressElement = (Element) addressNode;
 
