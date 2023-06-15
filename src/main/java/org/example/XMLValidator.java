@@ -76,13 +76,11 @@ public class XMLValidator {
             Node userNode = userNodeList.item(i);
             Element userElement = (Element) userNode;
 
-            int id = Integer.parseInt(userElement.getElementsByTagName("id").item(0).getTextContent());
             String username = userElement.getElementsByTagName("username").item(0).getTextContent();
             String email = userElement.getElementsByTagName("email").item(0).getTextContent();
             String password = userElement.getElementsByTagName("password").item(0).getTextContent();
             String registrationDate = userElement.getElementsByTagName("registration_date").item(0).getTextContent();
 
-            System.out.println("User ID: " + id);
             System.out.println("Username: " + username);
             System.out.println("Email: " + email);
             System.out.println("Password: " + password);

@@ -1,13 +1,30 @@
 package org.example.model;
 
+
+
+
+import jakarta.xml.bind.annotation.XmlAccessType;
+import jakarta.xml.bind.annotation.XmlAccessorType;
+import jakarta.xml.bind.annotation.XmlElement;
+import jakarta.xml.bind.annotation.XmlRootElement;
+import jakarta.xml.bind.annotation.adapters.XmlJavaTypeAdapter;
+import org.example.xmlService.LocalDateAdapter;
+
 import java.time.LocalDate;
 import java.util.List;
 
+@XmlRootElement(name="user")
+@XmlAccessorType(XmlAccessType.FIELD)
 public class User {
+    @XmlElement(name="username")
     private String username;
+    @XmlElement(name="email")
     private String email;
+    @XmlElement(name="password")
     private String password;
-    private LocalDate registration_date;
+    @XmlElement(name="registration_date")
+    @XmlJavaTypeAdapter(LocalDateAdapter.class)
+    private LocalDate registrationDate;
     private Cart cart;
     private List<Address> addresses;
 
@@ -15,10 +32,12 @@ public class User {
         this.username = username;
         this.email = email;
         this.password = password;
-        this.registration_date = registration_date;
+        this.registrationDate = registration_date;
         this.cart = cart;
         this.addresses = addresses;
     }
+
+    public User() {}
 
     public String getUsername() {
         return username;
@@ -44,12 +63,12 @@ public class User {
         this.password = password;
     }
 
-    public LocalDate getRegistration_date() {
-        return registration_date;
+    public LocalDate getRegistrationDate() {
+        return registrationDate;
     }
 
-    public void setRegistration_date(LocalDate registration_date) {
-        this.registration_date = registration_date;
+    public void setRegistrationDate(LocalDate registrationDate) {
+        this.registrationDate = registrationDate;
     }
 
     public Cart getCart() {

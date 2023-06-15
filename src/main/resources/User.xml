@@ -2,19 +2,15 @@
 <users xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
        xsi:noNamespaceSchemaLocation="User.xsd">
     <user>
-        <id>1</id>
         <username>johndoe</username>
         <email>johndoe@example.com</email>
         <password>password123</password>
         <registration_date>2023-06-12</registration_date>
-        <cart_id>1</cart_id>
     </user>
     <user>
-        <id>2</id>
         <username>janedoe</username>
         <email>janedoe@example.com</email>
         <password>pass4321</password>
         <registration_date>2023-06-10</registration_date>
-        <cart_id>2</cart_id>
     </user>
 </users>

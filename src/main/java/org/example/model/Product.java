@@ -1,12 +1,23 @@
 package org.example.model;
 
-import java.util.List;
+import jakarta.xml.bind.annotation.XmlAccessType;
+import jakarta.xml.bind.annotation.XmlAccessorType;
+import jakarta.xml.bind.annotation.XmlElement;
+import jakarta.xml.bind.annotation.XmlRootElement;
 
+@XmlRootElement(name="product")
+@XmlAccessorType(XmlAccessType.FIELD)
 public class Product {
+    @XmlElement(name="name")
     private String name;
+    @XmlElement(name="description")
     private String description;
+    @XmlElement(name="price")
     private double price;
+    @XmlElement(name="stock_quantity")
     private int stockQuantity;
+
+    public Product() {}
 
     public Product(String name, String description, double price, int stockQuantity) {
         this.name = name;
