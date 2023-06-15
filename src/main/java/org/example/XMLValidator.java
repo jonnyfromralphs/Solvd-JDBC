@@ -113,7 +113,6 @@ public class XMLValidator {
         System.out.println("Parsing product xml");
         System.out.println();
         for (int i = 0; i < productNodeList.getLength(); i++) {
-
             Node productNode = productNodeList.item(i);
             Element productElement = (Element) productNode;
 
