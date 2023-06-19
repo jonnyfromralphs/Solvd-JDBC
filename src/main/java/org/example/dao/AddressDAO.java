@@ -84,14 +84,14 @@ public class AddressDAO extends AbstractDAO<Address> {
 
     @Override
     public void update(Address address, int id) {
-        String query = "UPDATE address SET address_line1 = ?, address_line2 = ?, city = ?, state = ?, zip_code = ? WHERE address_line = ?;";
+        String query = "UPDATE address SET address_line1 = ?, address_line2 = ?, city = ?, state = ?, zip_code = ? WHERE id = ?;";
         try (PreparedStatement statement = getConnection().prepareStatement(query)) {
             statement.setString(1, address.getAddressLineOne());
             statement.setString(2, address.getAddressLineTwo());
             statement.setString(3, address.getCity());
             statement.setString(4, address.getState());
             statement.setString(5, address.getZipCode());
-            statement.setInt(5, id);
+            statement.setInt(6, id);
             statement.executeUpdate();
         } catch (SQLException e) {
             e.printStackTrace();

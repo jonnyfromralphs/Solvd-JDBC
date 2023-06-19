@@ -3,28 +3,21 @@ package org.example;
 import org.example.dao.*;
 import org.example.model.*;
 import org.example.service.*;
-
-import java.io.FileInputStream;
-import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.nio.file.Files;
 import java.nio.file.Paths;
 import java.sql.Connection;
 import java.sql.DriverManager;
+import java.sql.SQLException;
 import java.time.LocalDate;
 import java.util.List;
 import java.util.Properties;
 
-/**
- * Hello world!
- *
- */
 public class App 
 {
 
-    public static void main( String[] args )
-    {
-        Connection connection;
+    public static void main( String[] args ) {
+        Connection connection = null;
         try {
             Properties properties = new Properties();
             properties.load(Files.newInputStream(Paths.get("src/main/resources/db.properties")));
@@ -63,9 +56,19 @@ public class App
             CategoryService categoryService = new CategoryService(new CategoryDAO(connection));
             Category category = new Category("Communication", "Technology used to communicate through said device");
             categoryService.createCategory(category);
-            connection.close();
-        } catch (Exception e) {
-            e.printStackTrace();
+        } catch (SQLException e) {
+            throw new RuntimeException(e);
+        } catch (IOException e) {
+            throw new RuntimeException(e);
+        } finally {
+            if (connection != null) {
+                try {
+                    connection.close();
+                } catch (SQLException e) {
+                    throw new RuntimeException(e);
+                }
+            }
+
         }
 
 
