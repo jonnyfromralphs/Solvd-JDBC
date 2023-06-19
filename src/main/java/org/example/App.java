@@ -22,7 +22,7 @@ import java.util.Properties;
 public class App 
 {
 
-    public static void main( String[] args )
+    public static void main( String[] args )  {
     {
         Connection connection;
         try {
