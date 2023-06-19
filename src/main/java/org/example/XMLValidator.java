@@ -1,12 +1,13 @@
 package org.example;
 
-import org.example.model.User;
+
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
 import org.w3c.dom.Document;
 import org.w3c.dom.Element;
 import org.w3c.dom.Node;
 import org.w3c.dom.NodeList;
 import org.xml.sax.SAXException;
-
 import javax.xml.XMLConstants;
 import javax.xml.parsers.DocumentBuilder;
 import javax.xml.parsers.DocumentBuilderFactory;
@@ -18,10 +19,10 @@ import javax.xml.validation.SchemaFactory;
 import javax.xml.validation.Validator;
 import java.io.File;
 import java.io.IOException;
-import java.util.ArrayList;
-import java.util.List;
+
 
 public class XMLValidator {
+    private static final Logger logger = LogManager.getLogger(XMLValidator.class);
     public static void main(String[] args) throws SAXException, IOException, ParserConfigurationException {
 
         File userSchemaFile = new File("src/main/resources/User.xsd");
@@ -69,8 +70,7 @@ public class XMLValidator {
         Document userDoc = db.parse(userXMLFile);
         NodeList userNodeList = userDoc.getElementsByTagName("user");
 
-        System.out.println("Parsing user xml");
-        System.out.println();
+        logger.info("Parsing user xml");
         for (int i = 0; i < userNodeList.getLength(); i++) {
 
             Node userNode = userNodeList.item(i);
@@ -81,38 +81,34 @@ public class XMLValidator {
             String password = userElement.getElementsByTagName("password").item(0).getTextContent();
             String registrationDate = userElement.getElementsByTagName("registration_date").item(0).getTextContent();
 
-            System.out.println("Username: " + username);
-            System.out.println("Email: " + email);
-            System.out.println("Password: " + password);
-            System.out.println("Registration Date: " + registrationDate);
-            System.out.println();
+            logger.info("User ID: " + id);
+            logger.info("Username: " + username);
+            logger.info("Email: " + email);
+            logger.info("Password: " + password);
+            logger.info("Registration Date: " + registrationDate);
+
         }
 
         Document reviewDoc = db.parse(reviewXMLFile);
         NodeList reviewNodeList = reviewDoc.getElementsByTagName("review");
 
-        System.out.println("Parsing review xml");
-        System.out.println();
+        logger.info("Parsing review xml");
         for (int i = 0; i < reviewNodeList.getLength(); i++) {
-
             Node reviewNode = reviewNodeList.item(i);
             Element reviewElement = (Element) reviewNode;
 
             double rating = Double.parseDouble(reviewElement.getElementsByTagName("rating").item(0).getTextContent());
             String comment = reviewElement.getElementsByTagName("comment").item(0).getTextContent();
 
-            System.out.println("Rating: " + rating);
-            System.out.println("Comment: " + comment);
-            System.out.println();
+            logger.info("Rating: " + rating);
+            logger.info("Comment: " + comment);
         }
 
         Document productDoc = db.parse(productXMLFile);
         NodeList productNodeList = productDoc.getElementsByTagName("product");
 
-        System.out.println("Parsing product xml");
-        System.out.println();
+        logger.info("Parsing product xml");
         for (int i = 0; i < productNodeList.getLength(); i++) {
-
             Node productNode = productNodeList.item(i);
             Element productElement = (Element) productNode;
 
@@ -121,38 +117,32 @@ public class XMLValidator {
             double price = Double.parseDouble(productElement.getElementsByTagName("price").item(0).getTextContent());
             int stockQuantity = Integer.parseInt(productElement.getElementsByTagName("stock_quantity").item(0).getTextContent());
 
-            System.out.println("Name: " + name);
-            System.out.println("Description: " + description);
-            System.out.println("Price: " + price);
-            System.out.println("Stock: " + stockQuantity);
-            System.out.println();
+            logger.info("Name: " + name);
+            logger.info("Description: " + description);
+            logger.info("Price: " + price);
+            logger.info("Stock: " + stockQuantity);
         }
 
         Document categoryDoc = db.parse(categoryXMLFile);
         NodeList categoryNodeList = categoryDoc.getElementsByTagName("category");
 
-        System.out.println("Parsing category xml");
-        System.out.println();
+        logger.info("Parsing category xml");
         for (int i = 0; i < categoryNodeList.getLength(); i++) {
-
             Node categoryNode = categoryNodeList.item(i);
             Element categoryElement = (Element) categoryNode;
 
             String name = categoryElement.getElementsByTagName("name").item(0).getTextContent();
             String description = categoryElement.getElementsByTagName("description").item(0).getTextContent();
 
-            System.out.println("Category Name: " + name);
-            System.out.println("Description: " + description);
-            System.out.println();
+            logger.info("Category Name: " + name);
+            logger.info("Description: " + description);
         }
 
         Document addressDoc = db.parse(addressXMLFile);
         NodeList addressNodeList = addressDoc.getElementsByTagName("address");
 
-        System.out.println("Parsing address xml");
-        System.out.println();
+        logger.info("Parsing address xml");
         for (int i = 0; i < addressNodeList.getLength(); i++) {
-
             Node addressNode = addressNodeList.item(i);
             Element addressElement = (Element) addressNode;
 
@@ -162,12 +152,11 @@ public class XMLValidator {
             String state = addressElement.getElementsByTagName("state").item(0).getTextContent();
             String zipCode = addressElement.getElementsByTagName("zip_code").item(0).getTextContent();
 
-            System.out.println("Address Line 1: " + addressLineOne);
-            System.out.println("Address Line 2: " + addressLineTwo);
-            System.out.println("City: " + city);
-            System.out.println("State: " + state);
-            System.out.println("Zip Code: " + zipCode);
-            System.out.println();
+            logger.info("Address Line 1: " + addressLineOne);
+            logger.info("Address Line 2: " + addressLineTwo);
+            logger.info("City: " + city);
+            logger.info("State: " + state);
+            logger.info("Zip Code: " + zipCode);
         }
     }
 }
