@@ -134,7 +134,6 @@ public class XMLValidator {
         System.out.println("Parsing category xml");
         System.out.println();
         for (int i = 0; i < categoryNodeList.getLength(); i++) {
-
             Node categoryNode = categoryNodeList.item(i);
             Element categoryElement = (Element) categoryNode;
 
