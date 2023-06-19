@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<reviews xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xsi:noNamespaceSchemaLocation="Review.xsd">
+    <review>
+        <rating>4.3</rating>
+        <comment>Very good product</comment>
+    </review>
+    <review>
+        <rating>2.0</rating>
+        <comment>Did not like. Returned.</comment>
+    </review>
+</reviews>
