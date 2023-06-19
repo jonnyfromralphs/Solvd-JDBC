@@ -23,7 +23,7 @@ public class App
 {
 
     public static void main( String[] args )  {
-    {
+    
         Connection connection;
         try {
             Properties properties = new Properties();
