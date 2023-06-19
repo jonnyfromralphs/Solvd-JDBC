@@ -3,11 +3,17 @@ package org.example.model;
 
 
 
+import com.fasterxml.jackson.annotation.JsonFormat;
+import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.fasterxml.jackson.annotation.JsonProperty;
+import com.fasterxml.jackson.annotation.JsonRootName;
+import com.fasterxml.jackson.databind.annotation.JsonDeserialize;
 import jakarta.xml.bind.annotation.XmlAccessType;
 import jakarta.xml.bind.annotation.XmlAccessorType;
 import jakarta.xml.bind.annotation.XmlElement;
 import jakarta.xml.bind.annotation.XmlRootElement;
 import jakarta.xml.bind.annotation.adapters.XmlJavaTypeAdapter;
+import org.example.jacksonService.LocalDateDeserializer;
 import org.example.xmlService.LocalDateAdapter;
 
 import java.time.LocalDate;
@@ -16,16 +22,23 @@ import java.util.List;
 @XmlRootElement(name="user")
 @XmlAccessorType(XmlAccessType.FIELD)
 public class User {
+    @JsonProperty("username")
     @XmlElement(name="username")
     private String username;
+    @JsonProperty("email")
     @XmlElement(name="email")
     private String email;
+    @JsonProperty("password")
     @XmlElement(name="password")
     private String password;
+    @JsonProperty("registration_date")
+    @JsonDeserialize(using = LocalDateDeserializer.class)
     @XmlElement(name="registration_date")
     @XmlJavaTypeAdapter(LocalDateAdapter.class)
     private LocalDate registrationDate;
+    @JsonIgnore
     private Cart cart;
+    @JsonIgnore
     private List<Address> addresses;
 
     public User(String username, String email, String password, LocalDate registration_date, Cart cart, List<Address> addresses) {

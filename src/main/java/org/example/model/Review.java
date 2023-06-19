@@ -1,5 +1,6 @@
 package org.example.model;
 
+import com.fasterxml.jackson.annotation.JsonProperty;
 import jakarta.xml.bind.annotation.XmlAccessType;
 import jakarta.xml.bind.annotation.XmlAccessorType;
 import jakarta.xml.bind.annotation.XmlElement;
@@ -8,8 +9,10 @@ import jakarta.xml.bind.annotation.XmlRootElement;
 @XmlRootElement(name="review")
 @XmlAccessorType(XmlAccessType.FIELD)
 public class Review {
+    @JsonProperty("rating")
     @XmlElement(name="rating")
     private double rating;
+    @JsonProperty("comment")
     @XmlElement(name="comment")
     private String comment;
 
