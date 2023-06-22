@@ -1,11 +1,25 @@
 package org.example.model;
 
+import jakarta.xml.bind.annotation.XmlAccessType;
+import jakarta.xml.bind.annotation.XmlAccessorType;
+import jakarta.xml.bind.annotation.XmlElement;
+import jakarta.xml.bind.annotation.XmlRootElement;
+
+@XmlRootElement(name="address")
+@XmlAccessorType(XmlAccessType.FIELD)
 public class Address {
+    @XmlElement(name="address_line1")
     private String addressLineOne;
+    @XmlElement(name="address_line2")
     private String addressLineTwo;
+    @XmlElement(name="city")
     private String city;
+    @XmlElement(name="state")
     private String state;
+    @XmlElement(name="zip_code")
     private String zipCode;
+
+    public Address() {}
 
     public Address(String addressLineOne, String addressLineTwo, String city, String state, String zipCode) {
         this.addressLineOne = addressLineOne;
