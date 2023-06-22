@@ -14,7 +14,6 @@ public class JAXBMarshaller {
     public static void main(String[] args) {
         try {
             File userXML = new File("src/main/resources/User.xml");
-
             JAXBContext userContext = JAXBContext.newInstance(User.class);
             Unmarshaller userUnmarshaller = userContext.createUnmarshaller();
 
