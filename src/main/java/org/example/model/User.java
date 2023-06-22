@@ -1,9 +1,6 @@
 package org.example.model;
 
-import jakarta.xml.bind.annotation.XmlAccessType;
-import jakarta.xml.bind.annotation.XmlAccessorType;
-import jakarta.xml.bind.annotation.XmlElement;
-import jakarta.xml.bind.annotation.XmlRootElement;
+import jakarta.xml.bind.annotation.*;
 import jakarta.xml.bind.annotation.adapters.XmlJavaTypeAdapter;
 import org.example.xmlService.LocalDateAdapter;
 import java.time.LocalDate;
@@ -22,6 +19,8 @@ public class User {
     @XmlJavaTypeAdapter(LocalDateAdapter.class)
     private LocalDate registrationDate;
     private Cart cart;
+    @XmlElementWrapper(name="addresses")
+    @XmlElement(name="address")
     private List<Address> addresses;
 
     public User(String username, String email, String password, LocalDate registration_date, Cart cart, List<Address> addresses) {

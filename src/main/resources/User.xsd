@@ -10,6 +10,23 @@
                             <xs:element name="email" type="xs:string"/>
                             <xs:element name="password" type="xs:string"/>
                             <xs:element name="registration_date" type="xs:date"/>
+                            <xs:element name="addresses">
+                                <xs:complexType>
+                                    <xs:sequence>
+                                        <xs:element name="address" maxOccurs="unbounded">
+                                            <xs:complexType>
+                                                <xs:sequence>
+                                                    <xs:element name="address_line1" type="xs:string"/>
+                                                    <xs:element name="address_line2" type="xs:string"/>
+                                                    <xs:element name="city" type="xs:string"/>
+                                                    <xs:element name="state" type="xs:string"/>
+                                                    <xs:element name="zip_code" type="xs:string"/>
+                                                </xs:sequence>
+                                            </xs:complexType>
+                                        </xs:element>
+                                    </xs:sequence>
+                                </xs:complexType>
+                            </xs:element>
                         </xs:sequence>
                     </xs:complexType>
                 </xs:element>
