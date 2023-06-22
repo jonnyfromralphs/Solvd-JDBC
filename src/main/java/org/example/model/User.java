@@ -6,7 +6,6 @@ import jakarta.xml.bind.annotation.XmlElement;
 import jakarta.xml.bind.annotation.XmlRootElement;
 import jakarta.xml.bind.annotation.adapters.XmlJavaTypeAdapter;
 import org.example.xmlService.LocalDateAdapter;
-
 import java.time.LocalDate;
 import java.util.List;
 
