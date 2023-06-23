@@ -8,6 +8,7 @@ import jakarta.xml.bind.annotation.XmlRootElement;
 @XmlRootElement(name="address")
 @XmlAccessorType(XmlAccessType.FIELD)
 public class Address {
+    private int id;
     @XmlElement(name="address_line1")
     private String addressLineOne;
     @XmlElement(name="address_line2")
@@ -22,6 +23,15 @@ public class Address {
     public Address() {}
 
     public Address(String addressLineOne, String addressLineTwo, String city, String state, String zipCode) {
+        this.addressLineOne = addressLineOne;
+        this.addressLineTwo = addressLineTwo;
+        this.city = city;
+        this.state = state;
+        this.zipCode = zipCode;
+    }
+
+    public Address(int id, String addressLineOne, String addressLineTwo, String city, String state, String zipCode) {
+        this.id = id;
         this.addressLineOne = addressLineOne;
         this.addressLineTwo = addressLineTwo;
         this.city = city;

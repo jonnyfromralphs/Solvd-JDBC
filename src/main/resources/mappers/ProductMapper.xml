@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "https://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="org.example.mapper.ProductMapper">
+    <select id="selectProductById" resultMap="org.example.mapper.ProductMapper.productResultMap">
+        SELECT * FROM product WHERE id = #{id}
+    </select>
+
+    <select id="getIdByProductName">
+        SELECT id FROM product WHERE name = #{name}
+    </select>
+
+    <insert id="addProduct">
+        INSERT INTO product (name, description, price, stock_quantity) VALUES (#{name}, #{description}, #{price}, #{stockQuantity})
+    </insert>
+
+    <delete id="deleteUser">
+        DELETE FROM product WHERE id = #{id}
+    </delete>
+
+    <update id="updateUser">
+        UPDATE product SET name = #{name}, description = #{description}, price = #{price}, stock_quantity = #{stockQuantity}
+    </update>
+
+    <resultMap id="productResultMap" type="org.example.model.Product" autoMapping="true">
+        <result property="stockQuantity" column="stock_quantity"/>
+    </resultMap>
+</mapper>

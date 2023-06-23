@@ -8,15 +8,24 @@ import jakarta.xml.bind.annotation.XmlRootElement;
 @XmlRootElement(name="review")
 @XmlAccessorType(XmlAccessType.FIELD)
 public class Review {
+    private int id;
     @XmlElement(name="rating")
     private double rating;
     @XmlElement(name="comment")
     private String comment;
+    private int productId;
 
     public Review() {}
     public Review(double rating, String comment) {
         this.rating = rating;
         this.comment = comment;
+    }
+
+    public Review(int id, double rating, String comment, int productId) {
+        this.id = id;
+        this.rating = rating;
+        this.comment = comment;
+        this.productId = productId;
     }
 
     public double getRating() {

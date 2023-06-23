@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "https://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="org.example.mapper.AddressMapper">
+    <select id="selectAddressById" resultMap="org.example.mapper.AddressMapper.addressResultMap">
+        SELECT * FROM address WHERE id = #{id}
+    </select>
+
+    <select id="getIdByAddress">
+        SELECT id FROM address WHERE address_line1 = #{addressLineOne}
+    </select>
+
+    <insert id="addAddress">
+        INSERT INTO address (address_line1, address_line2, city, state, zip_code) VALUES (#{addressLineOne}, #{addressLineTwo}, #{city}, #{state}, #{zipCode})
+    </insert>
+
+    <insert id="addAddressForUser">
+        INSERT INTO user_has_address (user_id, address_id) VALUES (#{arg0}, #{arg1})
+    </insert>
+
+    <delete id="deleteAddress">
+        DELETE FROM address WHERE id = #{id}
+    </delete>
+
+    <update id="updateAddress">
+        UPDATE user SET address_line1 = #{addressLineOne}, address_line2 = #{addressLineTwo}, city = #{city}, state = #{state}, zip_code = #{zipCode} WHERE id = #{id}
+    </update>
+
+    <resultMap id="addressResultMap" type="org.example.model.Address" autoMapping="true">
+        <result property="addressLineOne" column="address_line1"/>
+        <result property="addressLineTwo" column="address_line2"/>
+        <result property="zipCode" column="zip_code"/>
+    </resultMap>
+</mapper>
