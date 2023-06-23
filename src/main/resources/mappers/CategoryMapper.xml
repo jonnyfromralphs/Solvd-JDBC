@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "https://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="org.example.mapper.CategoryMapper">
+    <select id="selectCategoryById" resultType="org.example.model.Category">
+        SELECT * FROM category WHERE id = #{id}
+    </select>
+
+    <select id="getIdByCategory">
+        SELECT id FROM category WHERE name = #{name}
+    </select>
+
+    <insert id="addCategory">
+        INSERT INTO category (name, description) VALUES (#{name}, #{description})
+    </insert>
+
+    <delete id="deleteCategory">
+        DELETE FROM category WHERE id = #{id}
+    </delete>
+
+    <update id="updateCategory">
+        UPDATE category SET name = ${name}, description = #{description} WHERE id = #{id}
+    </update>
+</mapper>

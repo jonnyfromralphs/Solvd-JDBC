@@ -1,0 +1,54 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "https://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="org.example.mapper.UserMapper">
+    <select id="selectUserById" resultMap="org.example.mapper.UserMapper.userResultMap">
+        SELECT * FROM user WHERE id = #{id}
+    </select>
+
+    <select id="selectUserWithAddresses" resultMap="org.example.mapper.UserMapper.userResultMap">
+        SELECT u.*, a.*
+        FROM user u
+        LEFT JOIN user_has_address uha ON u.id = uha.user_id
+        LEFT JOIN address a ON uha.address_id = a.id
+        WHERE u.id = #{id}
+    </select>
+
+    <select id="selectUsersAddresses" resultMap="org.example.mapper.AddressMapper.addressResultMap">
+        SELECT a.*
+        FROM user u
+        LEFT JOIN user_has_address uha ON u.id = uha.user_id
+        LEFT JOIN address a ON uha.address_id = a.id
+        WHERE u.id = #{id}
+    </select>
+
+    <select id="getIdByUsername">
+        SELECT id FROM user WHERE username = #{username}
+    </select>
+
+    <insert id="addUser">
+        INSERT INTO user (username, email, password, registration_date)
+        VALUES (#{username}, #{email}, #{password}, #{registrationDate})
+    </insert>
+
+    <delete id="deleteUser">
+        DELETE FROM user WHERE id = #{id}
+    </delete>
+
+    <update id="updateUser">
+        UPDATE user SET username = #{username}, email = #{email}, password = #{password}, registration_date = #{registrationDate} WHERE id = #{id}
+    </update>
+
+    <resultMap id="userResultMap" type="org.example.model.User" autoMapping="true">
+        <result property="registrationDate" column="registration_date"/>
+        <collection property="addresses" ofType="org.example.model.Address">
+            <id property="id" column="address_id"/>
+            <result property="addressLineOne" column="address_line1"/>
+            <result property="addressLineTwo" column="address_line2"/>
+            <result property="city" column="city"/>
+            <result property="state" column="state"/>
+            <result property="zipCode" column="zip_code"/>
+        </collection>
+    </resultMap>
+</mapper>

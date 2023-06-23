@@ -8,6 +8,7 @@ import jakarta.xml.bind.annotation.XmlRootElement;
 @XmlRootElement(name="category")
 @XmlAccessorType(XmlAccessType.FIELD)
 public class Category {
+    private int id;
     @XmlElement(name="name")
     private String name;
     @XmlElement(name="description")
@@ -16,6 +17,11 @@ public class Category {
     public Category() {}
 
     public Category(String name, String description) {
+        this.name = name;
+        this.description = description;
+    }
+
+    public Category(int id, String name, String description) {
         this.name = name;
         this.description = description;
     }

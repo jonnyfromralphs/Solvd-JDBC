@@ -9,6 +9,7 @@ import java.util.List;
 @XmlRootElement(name="user")
 @XmlAccessorType(XmlAccessType.FIELD)
 public class User {
+    private int id;
     @XmlElement(name="username")
     private String username;
     @XmlElement(name="email")
@@ -24,6 +25,16 @@ public class User {
     private List<Address> addresses;
 
     public User(String username, String email, String password, LocalDate registration_date, Cart cart, List<Address> addresses) {
+        this.username = username;
+        this.email = email;
+        this.password = password;
+        this.registrationDate = registration_date;
+        this.cart = cart;
+        this.addresses = addresses;
+    }
+
+    public User(int id, String username, String email, String password, LocalDate registration_date, Cart cart, List<Address> addresses) {
+        this.id = id;
         this.username = username;
         this.email = email;
         this.password = password;
