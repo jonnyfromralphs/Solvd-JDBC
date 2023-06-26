@@ -81,7 +81,6 @@ public class XMLValidator {
             String password = userElement.getElementsByTagName("password").item(0).getTextContent();
             String registrationDate = userElement.getElementsByTagName("registration_date").item(0).getTextContent();
 
-            logger.info("User ID: " + id);
             logger.info("Username: " + username);
             logger.info("Email: " + email);
             logger.info("Password: " + password);

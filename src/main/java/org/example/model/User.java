@@ -1,8 +1,5 @@
 package org.example.model;
 
-
-
-
 import com.fasterxml.jackson.annotation.JsonFormat;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonProperty;
@@ -12,10 +9,10 @@ import jakarta.xml.bind.annotation.XmlAccessType;
 import jakarta.xml.bind.annotation.XmlAccessorType;
 import jakarta.xml.bind.annotation.XmlElement;
 import jakarta.xml.bind.annotation.XmlRootElement;
+import jakarta.xml.bind.annotation.*;
 import jakarta.xml.bind.annotation.adapters.XmlJavaTypeAdapter;
 import org.example.jacksonService.LocalDateDeserializer;
 import org.example.xmlService.LocalDateAdapter;
-
 import java.time.LocalDate;
 import java.util.List;
 
@@ -38,7 +35,10 @@ public class User {
     private LocalDate registrationDate;
     @JsonIgnore
     private Cart cart;
+
     @JsonIgnore
+    @XmlElementWrapper(name="addresses")
+    @XmlElement(name="address")
     private List<Address> addresses;
 
     public User(String username, String email, String password, LocalDate registration_date, Cart cart, List<Address> addresses) {
