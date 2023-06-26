@@ -1,0 +1,98 @@
+{
+  "addresses": [
+    {
+      "address_line1": "123 W St",
+      "address_line2": "Apt 201",
+      "city": "Los Angeles",
+      "state": "California",
+      "zip_code": 90123
+    },
+    {
+      "address_line1": "1184 W Adams",
+      "address_line2": "",
+      "city": "Las Vegas",
+      "state": "Nevada",
+      "zip_code": 10238
+    }
+  ],
+  "categories": [
+    {
+      "name": "Arts and Crafts",
+      "description": "Items relating to the making of arts and/or crafts"
+    },
+    {
+      "name": "Smart Phones",
+      "description": "Modern smartphones capable of performing a variety of tasks"
+    }
+  ],
+  "products": [
+    {
+      "name": "LG 43\" Flat Screen TV",
+      "description": "LG's newest TV",
+      "price": 1199.99,
+      "stock_quantity": 10
+    },
+    {
+      "name": "Apple iPhone 15",
+      "description": "Apple's latest phone",
+      "price": 1599.99,
+      "stock_quantity": 100
+    }
+  ],
+  "reviews": [
+    {
+      "rating": 4.3,
+      "comment": "Very good product"
+    },
+    {
+      "rating": 2,
+      "comment": "Did not like. Returned."
+    }
+  ],
+  "users": [
+    {
+      "username": "johndoe",
+      "email": "johndoe@example.com",
+      "password": "password123",
+      "registration_date": "2023-06-12",
+      "addresses": [
+        {
+          "address_line1": "123 W St",
+          "address_line2": "Apt 201",
+          "city": "Los Angeles",
+          "state": "California",
+          "zip_code": 90123
+        },
+        {
+          "address_line1": "1184 W Adams",
+          "address_line2": "",
+          "city": "Las Vegas",
+          "state": "Nevada",
+          "zip_code": 10238
+        }
+      ]
+    },
+    {
+      "username": "janedoe",
+      "email": "janedoe@example.com",
+      "password": "pass4321",
+      "registration_date": "2023-06-10",
+      "addresses": [
+        {
+          "address_line1": "123 W St",
+          "address_line2": "Apt 201",
+          "city": "Los Angeles",
+          "state": "California",
+          "zip_code": 90123
+        },
+        {
+          "address_line1": "1184 W Adams",
+          "address_line2": "",
+          "city": "Las Vegas",
+          "state": "Nevada",
+          "zip_code": 10238
+        }
+      ]
+    }
+  ]
+}
