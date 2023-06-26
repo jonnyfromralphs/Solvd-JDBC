@@ -26,6 +26,7 @@ public class JSONParser {
                 logger.info(user.getEmail());
                 logger.info(user.getPassword());
                 logger.info(user.getRegistrationDate());
+                logger.info(user.getAddresses());
             }
 
             JsonNode reviewNode = rootNode.get("reviews");

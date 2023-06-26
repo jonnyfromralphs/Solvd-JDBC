@@ -36,7 +36,8 @@ public class User {
     @JsonIgnore
     private Cart cart;
 
-    @JsonIgnore
+    @JsonProperty("addresses")
+    @JsonFormat(with = JsonFormat.Feature.ACCEPT_SINGLE_VALUE_AS_ARRAY)
     @XmlElementWrapper(name="addresses")
     @XmlElement(name="address")
     private List<Address> addresses;

@@ -54,13 +54,45 @@
       "username": "johndoe",
       "email": "johndoe@example.com",
       "password": "password123",
-      "registration_date": "2023-06-12"
+      "registration_date": "2023-06-12",
+      "addresses": [
+        {
+          "address_line1": "123 W St",
+          "address_line2": "Apt 201",
+          "city": "Los Angeles",
+          "state": "California",
+          "zip_code": 90123
+        },
+        {
+          "address_line1": "1184 W Adams",
+          "address_line2": "",
+          "city": "Las Vegas",
+          "state": "Nevada",
+          "zip_code": 10238
+        }
+      ]
     },
     {
       "username": "janedoe",
       "email": "janedoe@example.com",
       "password": "pass4321",
-      "registration_date": "2023-06-10"
+      "registration_date": "2023-06-10",
+      "addresses": [
+        {
+          "address_line1": "123 W St",
+          "address_line2": "Apt 201",
+          "city": "Los Angeles",
+          "state": "California",
+          "zip_code": 90123
+        },
+        {
+          "address_line1": "1184 W Adams",
+          "address_line2": "",
+          "city": "Las Vegas",
+          "state": "Nevada",
+          "zip_code": 10238
+        }
+      ]
     }
   ]
 }
